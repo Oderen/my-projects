@@ -1,8 +1,8 @@
 {
-  "name": "try-1",
+  "name": "my-projects",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Oderen.github.io/try-1/",
+  "homepage": "https://Oderen.github.io/my-projects/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
