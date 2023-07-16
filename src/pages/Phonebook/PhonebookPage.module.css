@@ -1,0 +1,396 @@
+.contatcsContainer {
+  width: 100%;
+}
+
+.contacts__title {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Form */
+.contactsForm {
+  width: calc(100vw - 30px);
+  max-width: 380px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  padding-bottom: 0px;
+}
+
+.contactsForm__field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.contactsForm__field:first-child {
+  margin-bottom: 20px;
+}
+
+.contactsFrom__label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+  color: #757575;
+}
+
+.contactsForm__input {
+  width: 100%;
+
+  margin: 12px 0px 0px 0px;
+
+  padding-left: 45px;
+  padding-right: 18px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+}
+
+.contactsForm__input:focus {
+  outline: 2px solid #1976d2;
+}
+
+.contactsForm__svg {
+  position: absolute;
+  top: 62%;
+  left: 12px;
+  transform: translateY(-25%);
+  color: black;
+
+  width: 18px;
+  height: 18px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactsForm__input:focus + .contactsForm__svg {
+  color: #1976d2;
+}
+
+.contacts__button {
+  display: block;
+
+  width: 200px;
+  height: 50px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: auto;
+
+  cursor: pointer;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 0.06em;
+  color: #fff;
+
+  background-color: #003262;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  border: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contacts__button:hover,
+.contacts__button:focus {
+  background-color: #1976d2;
+}
+
+/* No Contacts Text */
+
+.contacts {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: calc(100vw - 20px);
+  margin: 50px auto;
+
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 480px) {
+  .contacts {
+    width: calc(100vw - 100px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contacts {
+    width: calc(100vw - 50px);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .contacts {
+    width: 95%;
+  }
+}
+
+.contacts__title {
+  margin-top: 15px;
+  margin-bottom: 0px;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+@media screen and (min-width: 480px) {
+  .contacts__title {
+    font-size: 34px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contacts__title {
+    font-size: 37px;
+  }
+}
+
+.noContacts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 40px;
+  margin-bottom: 100px;
+  padding: 40px 10px;
+
+  width: 85%;
+  background-color: white;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 480px) {
+  .noContacts {
+    width: 338px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .noContacts {
+    width: 450px;
+  }
+}
+
+.noContacts__text {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 480px) {
+  .noContacts__text {
+    font-size: 23px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .noContacts__text {
+    font-size: 26px;
+  }
+}
+
+/* Find Contacts */
+
+.findContacts__label {
+  text-align: center;
+  margin-top: 25px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+  color: #757575;
+}
+
+.findContacts__input {
+  width: 80%;
+
+  margin: 15px 0px 0px 0px;
+
+  padding-left: 45px;
+  padding-right: 18px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+}
+
+.findContacts__input:focus {
+  outline: 2px solid #1976d2;
+}
+
+.findContacts__icon {
+  position: absolute;
+  top: 71%;
+  left: 12px;
+  transform: translateY(-25%);
+
+  color: black;
+
+  bottom: 100px;
+  left: 50px;
+  z-index: 5;
+
+  width: 20px;
+  height: 20px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.findContacts__input:focus + .findContacts__icon {
+  color: #1976d2;
+}
+
+.ContactList {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+
+  list-style: none;
+}
+
+@media screen and (min-width: 768px) {
+  .ContactList {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    width: 697px;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .ContactList {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+    max-width: calc(100vw - 48px);
+    width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    padding: 0px 30px;
+
+    list-style: none;
+  }
+}
+
+@media screen and (min-width: 1475px) {
+  .ContactList {
+    grid-gap: 40px;
+  }
+}
+
+.ContactList__item {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 480px) {
+  .ContactList__item {
+    width: 320px;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ContactList__item {
+    width: 290px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .ContactList__item {
+    width: 340px;
+    margin-top: 0px;
+  }
+}
+
+.Contact {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.Contact__title {
+  color: #2072af;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+@media screen and (min-width: 480px) {
+  .Contact__title {
+    font-size: 20px;
+  }
+}
+
+.Contact__text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 480px) {
+  .Contact__text {
+    font-size: 17px;
+  }
+}
+
+.Contact__deleteButton {
+  display: block;
+
+  padding: 8px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 0.06em;
+  color: #757575;
+
+  background-color: transparent;
+
+  border-radius: 4px;
+  border: 2px solid #757575;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.Contact__deleteButton:hover,
+.Contact__deleteButton:focus {
+  color: #1976d2;
+  border: 2px solid #1976d2;
+}

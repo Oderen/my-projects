@@ -1,0 +1,128 @@
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import Notiflix from 'notiflix';
+import { nanoid } from 'nanoid';
+
+import { useSelector } from 'react-redux/es';
+import { selectContacts } from '../../../../redux/selectors';
+
+import style from '../Phonebook.module.css';
+import { ImUser } from 'react-icons/im';
+import { ImPhone } from 'react-icons/im';
+
+const useLocalStorage = (key, defaultValue) => {
+  const [state, setState] = useState(() => {
+    return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+
+  return [state, setState];
+};
+
+const Phonebook = ({ sendDataToApp }) => {
+  const contacts = useSelector(selectContacts);
+
+  const [name, setName] = useLocalStorage('name', '');
+  const [number, setNumber] = useLocalStorage('number', '');
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+      default:
+        return;
+    }
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+
+    const { name, number } = e.currentTarget.elements;
+
+    const contact = {
+      id: nanoid(),
+      name: name.value,
+      number: number.value,
+    };
+
+    if (onDuplicateCheck(contact.name)) {
+      e.currentTarget.reset();
+      // name.focus() || number.focus()
+      Notiflix.Notify.failure(`${contact.name} is already in contacts`);
+      return;
+    }
+
+    sendDataToApp({ name: name.value, number: number.value }, contact);
+    reset();
+  };
+
+  const onDuplicateCheck = name => {
+    const newContactName = name.toLowerCase();
+
+    return contacts.some(
+      contact => contact.name.toLowerCase() === newContactName
+    );
+  };
+
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
+
+  return (
+    <form className={style.contactsForm} onSubmit={onSubmit}>
+      <div className={style.contactsForm__field}>
+        <label className={style.contactsFrom__label}>
+          Name
+          <input
+            className={style.contactsForm__input}
+            type="text"
+            name="name"
+            value={name}
+            pattern="^[a-zA-Z\s]+$"
+            placeholder="Rosie Simpson"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            onChange={handleChange}
+            required
+          />
+          <ImUser className={style.contactsForm__svg} />
+        </label>
+      </div>
+      <div className={style.contactsForm__field}>
+        <label className={style.contactsFrom__label}>
+          Number
+          <input
+            className={style.contactsForm__input}
+            type="tel"
+            name="number"
+            value={number}
+            pattern="^[+]?[0-9\s]+$"
+            placeholder="+123 456 789"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            onChange={handleChange}
+            required
+          />
+          <ImPhone className={style.contactsForm__svg} />
+        </label>
+      </div>
+      <button className={style.contacts__button} type="submit">
+        Add contact
+      </button>
+    </form>
+  );
+};
+
+export default Phonebook;
+
+Phonebook.propTypes = {
+  sendDataToApp: PropTypes.func.isRequired,
+};

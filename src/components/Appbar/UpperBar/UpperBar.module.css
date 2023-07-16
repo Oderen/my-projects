@@ -1,0 +1,19 @@
+.navigationContainer {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 80px;
+  padding: 5px 20px;
+
+  background-color: #003262;
+}
+
+@media screen and (min-width: 768px) {
+  .navigationContainer {
+    padding: 5px 25px;
+  }
+}
