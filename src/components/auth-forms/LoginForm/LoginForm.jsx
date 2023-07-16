@@ -26,6 +26,13 @@ export default function LoginForm() {
     state => state.auth.isAuthProblem.isLogProblem
   );
 
+  const [isActive, setIsActive] = useState(false);
+
+  const buttonStyles = {
+    backgroundColor: isActive ? '#2072af' : '#003262',
+    transition: 'background-color 0.2s ease',
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -113,7 +120,10 @@ export default function LoginForm() {
             fullWidth
             variant="contained"
             sx={{ mt: 2, mb: 2 }}
+            style={{ ...buttonStyles }}
             className={css.loginButton}
+            onMouseEnter={() => setIsActive(true)}
+            onMouseLeave={() => setIsActive(false)}
           >
             Log In
           </Button>

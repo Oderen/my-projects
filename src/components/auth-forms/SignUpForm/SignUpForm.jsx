@@ -25,6 +25,13 @@ export default function SignIn() {
     state => state.auth.isAuthProblem.isRegProblem
   );
 
+  const [isActive, setIsActive] = useState(false);
+
+  const buttonStyles = {
+    backgroundColor: isActive ? '#2072af' : '#003262',
+    transition: 'background-color 0.2s ease',
+  };
+
   const [isEmailWrong, setIsEmailWrong] = useState(false);
   const [isPasswordWrong, setIsPasswordWrong] = useState(false);
   const [isAddInfo, setAddInfo] = useState(false);
@@ -158,7 +165,7 @@ export default function SignIn() {
             id="password"
             error={isPasswordWrong ? true : false}
             inputProps={{ pattern: /^\S+@\S+\.\S+$/ }}
-            helperText={'Must be at least 7 character long'}
+            helperText={'Must be at least 7 characters long'}
             autoComplete="current-password"
           />
           {isAuthProblem && (
@@ -174,7 +181,10 @@ export default function SignIn() {
             fullWidth
             variant="contained"
             sx={{ mt: 2, mb: 2 }}
+            style={{ ...buttonStyles }}
             className={css.signUpButton}
+            onMouseEnter={() => setIsActive(true)}
+            onMouseLeave={() => setIsActive(false)}
           >
             Sign Up
           </Button>
