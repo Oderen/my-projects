@@ -20,7 +20,10 @@ export const Navigation = () => {
           Home
         </NavLink>
         {isLoggedIn && (
-          <NavLink to="/contacts" className={css.navigation__list__item}>
+          <NavLink
+            to="/contacts"
+            className={`${css.navigation__list__item} ${css.navigation__phonebook}`}
+          >
             Phonebook
           </NavLink>
         )}

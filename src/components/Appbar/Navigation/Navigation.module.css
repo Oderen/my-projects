@@ -18,12 +18,12 @@
   line-height: 1.1666666667;
 }
 
-.navigation__list__item:last-child {
+.navigation__phonebook {
   margin-left: 20px;
 }
 
 @media screen and (min-width: 768px) {
-  .navigation__list__item:last-child {
+  .navigation__phonebook:last-child {
     margin-left: 30px;
   }
 
