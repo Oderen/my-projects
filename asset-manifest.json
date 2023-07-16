@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Oderen/try-1/static/css/main.7acaea2f.css",
+    "main.js": "/Oderen/try-1/static/js/main.d722dc19.js",
+    "index.html": "/Oderen/try-1/index.html",
+    "main.7acaea2f.css.map": "/Oderen/try-1/static/css/main.7acaea2f.css.map",
+    "main.d722dc19.js.map": "/Oderen/try-1/static/js/main.d722dc19.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.d722dc19.js"
+  ]
+}
