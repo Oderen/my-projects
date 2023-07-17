@@ -10,7 +10,7 @@ const Layout = () => {
       <header>
         <Appbar />
       </header>
-      <main>
+      <main style={{}}>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>

@@ -150,8 +150,8 @@ export default function SignIn() {
                 color: 'white',
               }}
             >
-              Due to specific backend features email must contain two "." and
-              "@" symbols. Please write the email in the following format
+              Due to specific API features email must contain two "." and "@"
+              symbols. Please write the email in the following format
               "example.smth@gmail.com"
             </p>
           </div>
@@ -172,7 +172,7 @@ export default function SignIn() {
             <div style={{ marginTop: 10 }}>
               <p style={{ margin: 0, color: 'red' }}>
                 This email is already registered or written form is not accepted
-                in backend. Please try to write a new one{' '}
+                in API. Please try to write a new one{' '}
               </p>
             </div>
           )}
