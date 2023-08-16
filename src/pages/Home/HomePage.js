@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import css from './Home.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 import {
   changeImgNavStatus,

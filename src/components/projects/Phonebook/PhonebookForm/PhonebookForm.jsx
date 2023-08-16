@@ -48,20 +48,14 @@ const Phonebook = ({ sendDataToApp }) => {
 
     const { name, number } = e.currentTarget.elements;
 
-    const contact = {
-      id: nanoid(),
-      name: name.value,
-      number: number.value,
-    };
-
-    if (onDuplicateCheck(contact.name)) {
+    if (onDuplicateCheck(name.value)) {
       e.currentTarget.reset();
       // name.focus() || number.focus()
-      Notiflix.Notify.failure(`${contact.name} is already in contacts`);
+      Notiflix.Notify.failure(`${name.value} is already in contacts`);
       return;
     }
 
-    sendDataToApp({ name: name.value, number: number.value }, contact);
+    sendDataToApp({ name: name.value, phone: number.value });
     reset();
   };
 

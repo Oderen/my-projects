@@ -8,15 +8,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import Loader from '../../Loader/Loader';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useState } from 'react';
 
 import { registerUser } from '../../../redux/ApiOperations';
-
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import css from './SignUpForm.module.css';
+
+import VerificationModal from './VerificationModal';
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export default function SignIn() {
   const isAuthProblem = useSelector(
     state => state.auth.isAuthProblem.isRegProblem
   );
+  const isModalOpen = useSelector(state => state.auth.isAuthModalOpen);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -34,7 +36,7 @@ export default function SignIn() {
 
   const [isEmailWrong, setIsEmailWrong] = useState(false);
   const [isPasswordWrong, setIsPasswordWrong] = useState(false);
-  const [isAddInfo, setAddInfo] = useState(false);
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -47,14 +49,9 @@ export default function SignIn() {
     if (email === '') {
       return setIsEmailWrong(true);
     }
-
-    if (!(email.includes('@') && email.split('.').length - 1 === 2)) {
-      return setIsEmailWrong(true);
-    }
-
     setIsEmailWrong(false);
 
-    if (password.length <= 6) {
+    if (password.length <= 5) {
       return setIsPasswordWrong(true);
     }
 
@@ -69,8 +66,11 @@ export default function SignIn() {
     dispatch(registerUser(userData));
   };
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Container component="main" maxWidth="xs">
+      {isModalOpen && <VerificationModal />}
       <CssBaseline />
       <Box
         sx={{
@@ -107,36 +107,11 @@ export default function SignIn() {
             autoFocus
             error={isEmailWrong || isAuthProblem ? true : false}
             helperText={
-              isEmailWrong ? (
-                <span>
-                  Invalid email. Please try again{' '}
-                  <AiOutlineQuestionCircle
-                    onMouseEnter={() => {
-                      setAddInfo(true);
-                    }}
-                    onMouseLeave={() => {
-                      setAddInfo(false);
-                    }}
-                  />
-                </span>
-              ) : (
-                <span>
-                  Must contain two "." symbols{' '}
-                  <AiOutlineQuestionCircle
-                    className={css.emailTextHelper}
-                    onMouseEnter={() => {
-                      setAddInfo(true);
-                    }}
-                    onMouseLeave={() => {
-                      setAddInfo(false);
-                    }}
-                  />
-                </span>
-              )
+              isEmailWrong && <span>Invalid email. Please try again </span>
             }
           />
 
-          <div
+          {/* <div
             className={css.infoBlock}
             style={{
               display: isAddInfo ? 'block' : 'none',
@@ -154,7 +129,7 @@ export default function SignIn() {
               symbols. Please write the email in the following format
               "example.smth@gmail.com"
             </p>
-          </div>
+          </div> */}
           <TextField
             margin="normal"
             required
@@ -165,14 +140,13 @@ export default function SignIn() {
             id="password"
             error={isPasswordWrong ? true : false}
             inputProps={{ pattern: /^\S+@\S+\.\S+$/ }}
-            helperText={'Must be at least 7 characters long'}
+            helperText={'Must be at least 6 characters long'}
             autoComplete="current-password"
           />
           {isAuthProblem && (
             <div style={{ marginTop: 10 }}>
               <p style={{ margin: 0, color: 'red' }}>
-                This email is already registered or written form is not accepted
-                in API. Please try to write a new one{' '}
+                This email is already registered
               </p>
             </div>
           )}

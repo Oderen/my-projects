@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import Loader from 'components/Loader/Loader';
 
 import { logIn } from '../../../redux/ApiOperations';
 import css from './LoginForm.module.css';
@@ -25,6 +26,7 @@ export default function LoginForm() {
   const isLogProblem = useSelector(
     state => state.auth.isAuthProblem.isLogProblem
   );
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -45,14 +47,13 @@ export default function LoginForm() {
     }
     setEmailValidation(false);
 
-    if (password.length > 6) {
+    if (password.length > 5) {
       setPasswordValidation(false);
     } else {
       return setPasswordValidation(true);
     }
 
     const userData = {
-      name: email.split('@')[0],
       email,
       password,
     };
@@ -60,7 +61,9 @@ export default function LoginForm() {
     dispatch(logIn(userData));
   };
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Container component="main" maxWidth="xs" className={css.loginContainer}>
       <CssBaseline />
       <Box
@@ -104,7 +107,7 @@ export default function LoginForm() {
             helperText={
               !isPasswordWrong
                 ? ''
-                : 'Password must contain at leat 7 characters'
+                : 'Password must contain at leat 6 characters'
             }
             autoComplete="current-password"
           />

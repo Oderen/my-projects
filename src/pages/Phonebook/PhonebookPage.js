@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { fetchContacts, deleteContact, addContact } from 'redux/ApiOperations';
 import {
@@ -17,7 +17,7 @@ import Filter from '../../components/projects/Phonebook/Filter/Filter.jsx';
 import css from './PhonebookPage.module.css';
 
 const PhonebookPage = () => {
-  // const isFirstRender = useRef(true);
+  const isFirstRender = useRef(true);
   const dispatch = useDispatch();
 
   const contacts = useSelector(selectContacts);
@@ -26,10 +26,10 @@ const PhonebookPage = () => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    // if (isFirstRender.current) {
-    //   isFirstRender.current = false;
-    //   return;
-    // }
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     dispatch(fetchContacts());
   }, [dispatch]);
 

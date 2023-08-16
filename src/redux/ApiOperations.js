@@ -10,7 +10,8 @@ const token = {
   },
 };
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://phonebook-6iw6.onrender.com/api';
+// axios.defaults.baseURL = 'http://localhost:3001/api';
 
 // Contacts
 
@@ -35,11 +36,7 @@ export const addContact = createAsyncThunk(
     try {
       const fetchedNewContact = await axios.post('/contacts', newContact);
 
-      return {
-        id: fetchedNewContact.data.id,
-        name: fetchedNewContact.data.name,
-        number: fetchedNewContact.data.number,
-      };
+      return fetchedNewContact.data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -52,6 +49,7 @@ export const deleteContact = createAsyncThunk(
   async (contactID, { rejectWithValue }) => {
     try {
       await axios.delete(`/contacts/${contactID}`);
+
       return contactID;
     } catch (error) {
       return rejectWithValue(error);
@@ -65,11 +63,14 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   async credentials => {
     try {
-      const { data } = await axios.post('/users/signup', credentials);
+      const { data } = await axios.post('/users/register', credentials);
       token.set(data.token);
 
-      return data;
+      const name = data.user.email.split('@')[0];
+
+      return { name, ...data };
     } catch (error) {
+      console.log('Error: ', error);
       throw error;
     }
   }
@@ -78,8 +79,12 @@ export const registerUser = createAsyncThunk(
 export const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/users/login', credentials);
+    const name = data.user.email.split('@')[0];
     token.set(data.token);
-    return data;
+    return {
+      name,
+      ...data,
+    };
   } catch (error) {
     throw error;
   }
@@ -108,6 +113,10 @@ export const fetchCurrentUser = createAsyncThunk(
     token.set(persistedToken);
 
     const { data } = await axios.get('/users/current');
-    return data;
+    const name = data.email.split('@')[0];
+    return {
+      name,
+      ...data,
+    };
   }
 );

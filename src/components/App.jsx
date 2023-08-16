@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Layout from './Layout/Layout';
@@ -24,16 +24,16 @@ const Phonebook = lazy(() =>
 
 const App = () => {
   const dispatch = useDispatch();
-  // const isFirstRender = useRef(true);
+  const isFirstRender = useRef(true);
   const isRefreshingCurrentUser = useSelector(state => state.auth.isRefreshing);
 
   /* eslint-disable */
 
   useEffect(() => {
-    // if (isFirstRender.current) {
-    //   isFirstRender.current = false;
-    //   return;
-    // }
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
 
     dispatch(fetchCurrentUser());
   }, []);

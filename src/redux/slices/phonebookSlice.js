@@ -27,20 +27,17 @@ export const phonebookSlice = createSlice({
       })
       // AddContact
       .addCase(addContact.pending, state => {
-        return { ...state, isLoading: true };
+        state.isLoading = true;
       })
-      .addCase(addContact.fulfilled, (state, action) => {
-        return {
-          isLoading: false,
-          error: null,
-          items: [...state.items, action.payload],
-        };
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = [...state.items, payload];
       })
       .addCase(addContact.rejected, state => {
-        return {
-          ...state,
-          error: true,
-        };
+        state.error = true;
+        state.items = [...state.items];
+        state.isLoading = false;
       })
       // DeleteContact
       .addCase(deleteContact.pending, state => {
@@ -50,7 +47,7 @@ export const phonebookSlice = createSlice({
         return {
           isLoading: false,
           error: null,
-          items: state.items.filter(contact => contact.id !== action.payload),
+          items: state.items.filter(contact => contact._id !== action.payload),
         };
       })
       .addCase(deleteContact.rejected, state => {

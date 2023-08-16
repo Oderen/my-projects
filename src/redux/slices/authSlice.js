@@ -11,7 +11,11 @@ const initialState = {
   token: null,
   isLogged: false,
   isRefreshing: false,
-  isAuthProblem: { isRegProblem: false, isLogProblem: false },
+  isAuthProblem: {
+    isRegProblem: false,
+    isLogProblem: false,
+  },
+  isAuthModalOpen: false,
 };
 
 const authSlice = createSlice({
@@ -20,28 +24,40 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.user.name = action.payload.user.name;
+        state.user.name = action.payload.name;
         state.user.email = action.payload.user.email;
-        state.token = action.payload.token;
-        state.isLogged = true;
+        state.isRefreshing = false;
+        // state.token = action.payload.token;
+        // state.isLogged = true;
         state.isAuthProblem.isRegProblem = false;
+        state.isAuthModalOpen = true;
       })
       .addCase(registerUser.rejected, state => {
+        state.isRefreshing = false;
         state.isAuthProblem.isRegProblem = true;
+        state.isAuthModalOpen = false;
       })
-      .addCase(logIn.fulfilled, (_, action) => {
+      .addCase(registerUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(logIn.fulfilled, (_, { payload }) => {
         return {
           user: {
-            name: action.payload.user.name,
-            email: action.payload.user.email,
+            name: payload.name,
+            email: payload.user.email,
           },
-          token: action.payload.token,
+          token: payload.token,
           isLogged: true,
+          isRefreshing: false,
           isAuthProblem: { isRegProblem: false, isLogProblem: false },
         };
       })
       .addCase(logIn.rejected, state => {
         state.isAuthProblem.isLogProblem = true;
+        state.isRefreshing = false;
+      })
+      .addCase(logIn.pending, state => {
+        state.isRefreshing = true;
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
