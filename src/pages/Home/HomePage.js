@@ -66,9 +66,9 @@ const Home = () => {
             </p>
 
             <p className={css.introduction__text}>
-              While focusing on technical skills, the current design prioritizes
-              functionality over looks. Right now, the site is a starting point
-              that will be improved with future changes.
+              While prioritizing technical skills, the current design emphasizes
+              functionality over aesthetics. However, the site is only a
+              starting point and will be enhanced through future changes.
             </p>
 
             <p className={css.introduction__text}>

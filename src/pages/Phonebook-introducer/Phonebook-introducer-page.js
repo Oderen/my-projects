@@ -21,7 +21,15 @@ const PhonebookIntroducerPage = () => {
       </h4>
       <ul className={css.description__list}>
         <li className={style.description__item}>REST API</li>
-        <li className={style.description__item}>Own backend</li>
+        <li className={style.description__item}>
+          Own backend:{' '}
+          <a
+            href="https://github.com/Oderen/nodejs-rest-api"
+            style={{ marginLeft: 10 }}
+          >
+            link
+          </a>
+        </li>
         <li className={style.description__item}>Registration via email</li>
         <li className={style.description__item}>React</li>
         <li className={style.description__item}>React Redux</li>
