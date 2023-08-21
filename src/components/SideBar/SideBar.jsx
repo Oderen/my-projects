@@ -1,7 +1,7 @@
 import { BiImage } from 'react-icons/bi';
 import { HiDevicePhoneMobile } from 'react-icons/hi2';
 import { FaPhoneAlt } from 'react-icons/fa';
-import { AiOutlineMenu } from 'react-icons/ai';
+// import { AiOutlineMenu } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSideBar } from 'redux/slices/sideBarSlice';

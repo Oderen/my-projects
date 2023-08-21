@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { closeSideBar } from '../../../redux/slices/sideBarSlice';
 import { toggleSideBar } from '../../../redux/slices/sideBarSlice';
