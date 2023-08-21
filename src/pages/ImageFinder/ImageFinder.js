@@ -100,7 +100,25 @@ const ImageFinder = () => {
   };
 
   return (
-    <>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        paddingTop: 40,
+      }}
+    >
+      <h2 className={css.title}>Image Finder</h2>
+      <h3 className={css.description_title}>Project details:</h3>
+      <p className={css.description__name}>
+        <strong>What is it? </strong>Web application for choosing a photo like
+        pinterest.
+      </p>
+      <ul className={css.description__list}>
+        <li className={css.description__item}>REST API</li>
+        <li className={css.description__item}>Pagination</li>
+        <li className={css.description__item}>React</li>
+        <li className={css.description__item}>Responsive design</li>
+      </ul>
       <Searchbar handleFormSubmit={handleFormSubmit} />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (
@@ -121,7 +139,7 @@ const ImageFinder = () => {
       {showModal && (
         <Modal closeModal={toggleModal} largeImageURL={largeImageURL} />
       )}
-    </>
+    </div>
   );
 };
 

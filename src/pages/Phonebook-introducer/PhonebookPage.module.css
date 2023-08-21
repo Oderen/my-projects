@@ -1,14 +1,22 @@
 .phonebook {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 110vh;
+  padding: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 212, 255, 0.83) 0%,
+    rgba(2, 0, 36, 0.83) 100%
+  );
+}
 
-  border-top: 1px solid black;
+@media screen and (min-width: 1200px) {
+  .phonebook {
+    height: 100vh;
+  }
 }
 
 .phonebook__box {
   width: 280px;
-  height: 250px;
+  height: 300px;
 
   display: flex;
   flex-direction: column;
@@ -17,10 +25,9 @@
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 50px;
 
-  padding: 10px 30px;
+  padding: 10px;
 
   border: 1px solid black;
   border-radius: 4px;
@@ -37,6 +44,7 @@
 @media screen and (min-width: 768px) {
   .phonebook__box {
     width: 600px;
+    margin-top: 35px;
   }
 }
 
@@ -81,4 +89,33 @@
 .phonebook__link:focus {
   color: #1976d2;
   border: 2px solid #1976d2;
+}
+
+.phonebook__text {
+  font-family: 'Roboto sans-serif';
+  font-size: 16px;
+}
+
+@media screen and (min-width: 480px) {
+  .phonebook__text {
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .phonebook__text {
+    font-size: 19px;
+  }
+}
+
+.description__list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+}
+
+@media screen and (min-width: 768px) {
+  .description__list {
+    width: 300px;
+  }
 }

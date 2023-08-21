@@ -53,7 +53,7 @@ const PhonebookPage = () => {
   );
 
   return (
-    <div style={{ width: '100%' }}>
+    <div className={css.contatcsContainer}>
       <h1 className={css.contacts__title}>Phonebook</h1>
       <ContactForm sendDataToApp={formOnSubmit} />
       {isError && <h1>Ops, something went wrong</h1>}

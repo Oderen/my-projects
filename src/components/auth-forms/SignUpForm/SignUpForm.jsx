@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+
 import Link from '@mui/material/Link';
 import Loader from '../../Loader/Loader';
 
@@ -67,14 +66,21 @@ export default function SignIn() {
   };
 
   return isRefreshing ? (
-    <Loader />
+    <Loader text={'It may take a while'} />
   ) : (
-    <Container component="main" maxWidth="xs">
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        paddingLeft: 10,
+        paddingRight: 10,
+      }}
+    >
       {isModalOpen && <VerificationModal />}
-      <CssBaseline />
       <Box
-        sx={{
-          marginTop: 8,
+        style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -87,13 +93,7 @@ export default function SignIn() {
           Sign Up
         </Typography>
 
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          noValidate
-          sx={{ mt: 1 }}
-          style={{ position: 'relative' }}
-        >
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             id="email"
             name="email"
@@ -110,26 +110,6 @@ export default function SignIn() {
               isEmailWrong && <span>Invalid email. Please try again </span>
             }
           />
-
-          {/* <div
-            className={css.infoBlock}
-            style={{
-              display: isAddInfo ? 'block' : 'none',
-            }}
-          >
-            <p
-              style={{
-                padding: 7,
-                fontSize: 12,
-                fontWeight: 500,
-                color: 'white',
-              }}
-            >
-              Due to specific API features email must contain two "." and "@"
-              symbols. Please write the email in the following format
-              "example.smth@gmail.com"
-            </p>
-          </div> */}
           <TextField
             margin="normal"
             required
@@ -163,10 +143,13 @@ export default function SignIn() {
             Sign Up
           </Button>
         </Box>
+
         <Link
-          href="http://localhost:3000/goit-react-hw-08-phonebook/login"
+          href="http://localhost:3000/projects/login"
           variant="body2"
-          style={{ textDecoration: 'none' }}
+          style={{
+            textDecoration: 'none',
+          }}
         >
           <p className={css.signUpLink}>
             <span>Have already an account?</span>
@@ -174,6 +157,6 @@ export default function SignIn() {
           </p>
         </Link>
       </Box>
-    </Container>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import {
   logIn,
   logOut,
   fetchCurrentUser,
+  resendEmail,
 } from '../ApiOperations';
 
 const initialState = {
@@ -11,9 +12,11 @@ const initialState = {
   token: null,
   isLogged: false,
   isRefreshing: false,
+  isInnerLoader: false,
   isAuthProblem: {
     isRegProblem: false,
     isLogProblem: false,
+    isEmailSent: true,
   },
   isAuthModalOpen: false,
 };
@@ -64,10 +67,6 @@ const authSlice = createSlice({
         state.token = null;
         state.isLogged = false;
       })
-
-      .addCase(fetchCurrentUser.pending, state => {
-        state.isRefreshing = true;
-      })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLogged = true;
@@ -75,6 +74,19 @@ const authSlice = createSlice({
       })
       .addCase(fetchCurrentUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(fetchCurrentUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      // resendEmail
+      .addCase(resendEmail.fulfilled, state => {
+        state.isInnerLoader = false;
+      })
+      .addCase(resendEmail.rejected, state => {
+        state.isInnerLoader = false;
+      })
+      .addCase(resendEmail.pending, state => {
+        state.isInnerLoader = true;
       })
       .addDefaultCase(state => {
         return state;

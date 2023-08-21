@@ -1,12 +1,6 @@
 .contatcsContainer {
   width: 100%;
-}
-
-.contacts__title {
-  width: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  padding: 20px;
 }
 
 /* Form */
@@ -108,10 +102,12 @@
 .contacts {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 
-  width: calc(100vw - 20px);
+  width: calc(100vw - 35px);
   margin: 50px auto;
+  padding: 10px;
 
   border: 1px solid black;
   border-radius: 10px;
@@ -136,8 +132,9 @@
 }
 
 .contacts__title {
-  margin-top: 15px;
+  margin-top: 0px;
   margin-bottom: 0px;
+  text-align: center;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 500;

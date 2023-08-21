@@ -5,20 +5,22 @@ import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { resendEmail } from 'redux/ApiOperations';
+import Loader from 'components/Loader/Loader';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const VerificationModal = () => {
+  const dispatch = useDispatch();
   const [isVerificationError, setVerificationError] = useState(false);
-  const [isEmailResend, setResendStatus] = useState(true);
   const navigate = useNavigate();
 
   const email = useSelector(state => state.auth.user.email);
-
-  // const onClose = () => {
-  //   closeModal(false);
-  // };
+  const isEmailResend = useSelector(
+    state => state.auth.isAuthProblem.isEmailSent
+  );
+  const isEmailSending = useSelector(state => state.auth.isInnerLoader);
 
   const isEmailVerified = async () => {
     try {
@@ -27,7 +29,7 @@ const VerificationModal = () => {
       };
 
       const data = await axios.post(
-        'http://localhost:3001/api/users/verification/check',
+        'https://phonebook-6iw6.onrender.com/api/users/verification/check',
         sendData
       );
 
@@ -35,7 +37,6 @@ const VerificationModal = () => {
         throw new Error();
       }
 
-      console.log('data', data);
       navigate('/login');
       return true;
     } catch (error) {
@@ -45,58 +46,41 @@ const VerificationModal = () => {
     }
   };
 
-  const resendEmail = async () => {
-    try {
-      const sendData = {
-        email: 'asdad@gmail.com',
-      };
-
-      const response = await axios.post(
-        'http://localhost:3001/api/users/verify',
-        sendData
-      );
-
-      if (response.status !== 200) {
-        throw new Error();
-      }
-      console.log('data', response);
-    } catch (error) {
-      setResendStatus(false);
-      console.log('Error: ', error);
-      throw error;
-    }
+  const resendMail = async () => {
+    dispatch(resendEmail(email));
   };
 
   return createPortal(
     <div className={css.overlay}>
       <div className={css.modal}>
-        {/* <button className={css.modal__closeButton} onClick={onClose}>
-          <AiOutlineCloseCircle className={css.modal__closeIcon} />
-        </button> */}
         <h2 className={css.modal__text}>Verify your email</h2>
         <div className={css.verification}>
           <button
             className={css.verification__button}
             onClick={isEmailVerified}
           >
-            {' '}
             I have verified my email
           </button>
+
           {isVerificationError && (
             <p className={css.verification__text}>You are not verified</p>
           )}
         </div>
         <div className={css.resendEmail}>
-          <p className={css.resendEmail__text}>
-            Do not see the email?{' '}
-            {!isEmailResend ? (
-              <span className={css.text}>Try again</span>
-            ) : (
-              'Resend'
-            )}{' '}
-            --&gt;
-          </p>
-          <button className={css.resendEmail__button} onClick={resendEmail}>
+          {isEmailSending ? (
+            <Loader width={50} height={50} marginTop={0} />
+          ) : (
+            <p className={css.resendEmail__text}>
+              Do not see the email?{' '}
+              {!isEmailResend ? (
+                <span className={css.text}>Try again</span>
+              ) : (
+                'Resend'
+              )}{' '}
+              --&gt;
+            </p>
+          )}
+          <button className={css.resendEmail__button} onClick={resendMail}>
             <RiMailSendLine
               className={`${css.resendEmail__icon} ${
                 !isEmailResend ? css.resendError : ''

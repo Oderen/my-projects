@@ -1,91 +1,81 @@
-import { NavLink } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
-import css from './Home.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+import { BiImage } from 'react-icons/bi';
+import { HiDevicePhoneMobile } from 'react-icons/hi2';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { closeSideBar } from 'redux/slices/sideBarSlice';
 
-import {
-  changeImgNavStatus,
-  changeMovieNavStatus,
-  changePhonebookNavStatus,
-} from '../../redux/slices/isNavActive-slice';
+import css from './Home.module.css';
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const isImgNavActive = useSelector(state => state.isNavActive.isImgNavActive);
-  const isMovieNavActive = useSelector(
-    state => state.isNavActive.isMovieNavActive
-  );
-  const isPhonebookNavActive = useSelector(
-    state => state.isNavActive.isPhonebookNavActive
-  );
-
-  const titleChanger = () => {
-    let text = 'CHOOSE A PROJECT';
-    if (isImgNavActive) {
-      text = 'Image Finder';
-    } else if (isMovieNavActive) {
-      text = 'Movie Finder';
-    } else if (isPhonebookNavActive) {
-      text = 'Phonebook';
-    }
-    return text;
-  };
-
   return (
     <div className={css.homeContainer}>
-      <div style={{ paddingLeft: 5, paddingRight: 5, paddingTop: 3 }}>
-        <h1 className={css.title}>{titleChanger()}</h1>
-        <nav className={css.navigation}>
-          <ul className={css.navigation__list}>
-            <li className={css.navigation__item}>
-              <NavLink
-                to="/imageFinder"
-                className={`${css.NavLink} ${
-                  isImgNavActive ? `${css.NavLink__active}` : ``
-                }`}
-                onClick={() => {
-                  dispatch(changeImgNavStatus());
-                }}
-              >
-                Image Finder
-              </NavLink>
-            </li>
-            <li className={css.navigation__item}>
-              <NavLink
-                to={'/movieFinder'}
-                className={`${css.NavLink} ${
-                  isMovieNavActive ? `${css.NavLink__active}` : ``
-                }`}
-                onClick={() => {
-                  dispatch(changeMovieNavStatus());
-                }}
-              >
-                Movie Finder
-              </NavLink>
-            </li>
-            <li className={css.navigation__item}>
-              <NavLink
-                to={'/phonebook'}
-                className={`${css.NavLink} ${
-                  isPhonebookNavActive ? `${css.NavLink__active}` : ``
-                }`}
-                onClick={() => {
-                  dispatch(changePhonebookNavStatus());
-                }}
-              >
-                Phonebook
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div className="content">
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
+
+      <div className={css.mainContent}>
+        <div className={css.projectInfo}>
+          <div className={css.projectInfo__innerContainer}>
+            <h2 className={css.projectInfo__title}>Projects</h2>
+            <ul className={css.projectInfo__list}>
+              <li className={css.projectInfo__item}>
+                <NavLink
+                  to="/imageFinder"
+                  className={css.projectInfo__NavLink}
+                  onClick={() => dispatch(closeSideBar())}
+                >
+                  <BiImage className={css.navigation__icon} />
+                  <p className={css.navigation__text}>Image Finder</p>
+                </NavLink>
+              </li>
+              <li className={css.projectInfo__item}>
+                <NavLink
+                  to="/Flopify"
+                  className={css.projectInfo__NavLink}
+                  onClick={() => dispatch(closeSideBar())}
+                >
+                  <HiDevicePhoneMobile className={css.navigation__icon} />
+                  <p className={css.navigation__text}>Flopify</p>
+                </NavLink>
+              </li>
+              <li className={css.projectInfo__item}>
+                <NavLink
+                  to="/phonebook"
+                  className={css.projectInfo__NavLink}
+                  onClick={() => dispatch(closeSideBar())}
+                >
+                  <FaPhoneAlt className={css.navigation__icon} />
+                  <p className={css.navigation__text}>Phonebook</p>
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+          <div className={css.introduction}>
+            <h1 className={css.introduction__title}>
+              Welcome to my Web Portfolio!
+            </h1>
+
+            <p className={css.introduction__text}>
+              This portfolio showcase projects that highlight my technical
+              skills.
+            </p>
+
+            <p className={css.introduction__text}>
+              While focusing on technical skills, the current design prioritizes
+              functionality over looks. Right now, the site is a starting point
+              that will be improved with future changes.
+            </p>
+
+            <p className={css.introduction__text}>
+              Thank you for visiting and considering my works!
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

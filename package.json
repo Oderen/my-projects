@@ -2,7 +2,7 @@
   "name": "projects",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Oderen.github.io/projects",
+  "homepage": "https://Oderen.github.io/portfolio/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -21,6 +21,7 @@
     "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.3.4",
     "react-perfect-scrollbar": "^1.5.8",
+    "react-player": "^2.12.0",
     "react-redux": "^8.1.1",
     "react-router": "^6.13.0",
     "react-router-dom": "^6.13.0",

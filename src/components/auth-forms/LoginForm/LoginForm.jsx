@@ -1,14 +1,13 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -62,13 +61,20 @@ export default function LoginForm() {
   };
 
   return isRefreshing ? (
-    <Loader />
+    <Loader text={'It may take a while'} />
   ) : (
-    <Container component="main" maxWidth="xs" className={css.loginContainer}>
-      <CssBaseline />
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        paddingLeft: 10,
+        paddingRight: 10,
+      }}
+    >
       <Box
-        sx={{
-          marginTop: 8,
+        style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -80,6 +86,7 @@ export default function LoginForm() {
         <Typography component="h1" variant="h5">
           Log In
         </Typography>
+
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             id="email"
@@ -130,22 +137,19 @@ export default function LoginForm() {
           >
             Log In
           </Button>
-          <Grid container>
-            <Grid item>
-              <Link
-                href="http://localhost:3000/goit-react-hw-08-phonebook/register"
-                variant="body2"
-                style={{ textDecoration: 'none' }}
-              >
-                <p className={css.loginLink}>
-                  <span>Don't have an account?</span>
-                  <span style={{ marginLeft: 5 }}>Sign Up</span>
-                </p>
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
+
+        <Link
+          href="http://localhost:3000/projects/register"
+          variant="body2"
+          style={{ textDecoration: 'none' }}
+        >
+          <p className={css.loginLink}>
+            <span>Don't have an account?</span>
+            <span style={{ marginLeft: 5 }}>Sign Up</span>
+          </p>
+        </Link>
       </Box>
-    </Container>
+    </div>
   );
 }

@@ -13,7 +13,7 @@ const Appbar = () => {
     <div className={css.navigationContainer}>
       <Navigation />
 
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      {isLoggedIn && <UserMenu />}
     </div>
   );
 };

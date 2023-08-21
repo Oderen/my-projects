@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import Notiflix from 'notiflix';
-import { nanoid } from 'nanoid';
 
 import { useSelector } from 'react-redux/es';
 import { selectContacts } from '../../../../redux/selectors';

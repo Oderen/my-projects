@@ -17,7 +17,7 @@ const ContactsPage = lazy(() => import('../pages/Phonebook/PhonebookPage.js'));
 
 // Small Projects
 const ImageFinder = lazy(() => import('../pages/ImageFinder/ImageFinder'));
-const MovieFinder = lazy(() => import('../pages/MovieFinderPage'));
+const Flopify = lazy(() => import('../pages/MovieFinderPage'));
 const Phonebook = lazy(() =>
   import('../pages/Phonebook-introducer/Phonebook-introducer-page')
 );
@@ -44,11 +44,17 @@ const App = () => {
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/" element={<HomePage />}>
-          <Route path="/imageFinder" element={<ImageFinder />} />
-          <Route path="/movieFinder" element={<MovieFinder />} />
-          <Route path="/phonebook" element={<Phonebook />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/imageFinder" element={<ImageFinder />} />
+        <Route path="/Flopify" element={<Flopify />} />
+
+        <Route
+          path="/phonebook"
+          element={
+            <PublicRoute redirectTo="/contacts" component={<Phonebook />} />
+          }
+        />
+
         <Route
           path="/register"
           element={

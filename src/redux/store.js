@@ -4,6 +4,7 @@ import { filterSlice } from './slices/filterSlice';
 import { phonebookSlice } from './slices/phonebookSlice';
 import authSLice from './slices/authSlice';
 import { isNavActiveSlice } from './slices/isNavActive-slice';
+import { sideBarSlice } from './slices/sideBarSlice';
 
 import storage from 'redux-persist/lib/storage';
 
@@ -35,6 +36,7 @@ export const store = configureStore({
     contacts: phonebookSlice.reducer,
     filter: filterSlice.reducer,
     isNavActive: isNavActiveSlice.reducer,
+    sideBar: sideBarSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

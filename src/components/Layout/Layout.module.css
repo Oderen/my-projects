@@ -1,5 +1,6 @@
 .container {
   max-width: 480px;
+  height: 110vh;
 }
 
 @media screen and (min-width: 480px) {
@@ -17,8 +18,13 @@
 @media screen and (min-width: 1200px) {
   .container {
     max-width: 100%;
-    height: 100vh;
     margin-left: auto;
     margin-right: auto;
+    height: 100%;
   }
+}
+
+.main {
+  position: relative;
+  height: 100%;
 }

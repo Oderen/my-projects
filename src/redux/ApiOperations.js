@@ -120,3 +120,23 @@ export const fetchCurrentUser = createAsyncThunk(
     };
   }
 );
+
+export const resendEmail = createAsyncThunk('email/resend', async email => {
+  try {
+    const sendData = {
+      email,
+    };
+
+    const response = await axios.post(
+      'https://phonebook-6iw6.onrender.com/api/users/verify',
+      sendData
+    );
+
+    if (response.status !== 200) {
+      throw new Error();
+    }
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+});
