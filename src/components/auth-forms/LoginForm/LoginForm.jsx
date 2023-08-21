@@ -140,7 +140,7 @@ export default function LoginForm() {
         </Box>
 
         <Link
-          href="http://localhost:3000/projects/register"
+          href="http://localhost:3000/portfolio/register"
           variant="body2"
           style={{ textDecoration: 'none' }}
         >
