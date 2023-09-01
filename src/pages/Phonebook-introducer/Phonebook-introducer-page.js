@@ -30,7 +30,7 @@ const PhonebookIntroducerPage = () => {
             link
           </a>
         </li>
-        <li className={style.description__item}>Registration via email</li>
+        {/* <li className={style.description__item}>Registration via email</li> */}
         <li className={style.description__item}>React</li>
         <li className={style.description__item}>React Redux</li>
         <li className={style.description__item}>Responsive/Adaptive design</li>

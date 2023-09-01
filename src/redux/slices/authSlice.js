@@ -30,8 +30,8 @@ const authSlice = createSlice({
         state.user.name = action.payload.name;
         state.user.email = action.payload.user.email;
         state.isRefreshing = false;
-        // state.token = action.payload.token;
-        // state.isLogged = true;
+        state.token = action.payload.token;
+        state.isLogged = true;
         state.isAuthProblem.isRegProblem = false;
         state.isAuthModalOpen = true;
       })
@@ -69,6 +69,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
+        // state.token = action.payload.token;
         state.isLogged = true;
         state.isRefreshing = false;
       })

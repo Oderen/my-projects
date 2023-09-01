@@ -16,7 +16,7 @@ import { useState } from 'react';
 import { registerUser } from '../../../redux/ApiOperations';
 import css from './SignUpForm.module.css';
 
-import VerificationModal from './VerificationModal';
+// import VerificationModal from './VerificationModal';
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function SignIn() {
   const isAuthProblem = useSelector(
     state => state.auth.isAuthProblem.isRegProblem
   );
-  const isModalOpen = useSelector(state => state.auth.isAuthModalOpen);
+  // const isModalOpen = useSelector(state => state.auth.isAuthModalOpen);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -78,7 +78,7 @@ export default function SignIn() {
         paddingRight: 10,
       }}
     >
-      {isModalOpen && <VerificationModal />}
+      {/* {isModalOpen && <VerificationModal />} */}
       <Box
         style={{
           display: 'flex',
