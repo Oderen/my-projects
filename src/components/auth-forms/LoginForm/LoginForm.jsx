@@ -140,7 +140,7 @@ export default function LoginForm() {
         </Box>
 
         <Link
-          href="http://localhost:3000/portfolio/register"
+          href="https://oderen.github.io/portfolio/register"
           variant="body2"
           style={{ textDecoration: 'none' }}
         >
