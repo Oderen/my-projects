@@ -32,7 +32,7 @@
   border: 1px solid black;
   border-radius: 4px;
 
-  background-color: gainsboro;
+  background-color: transparent;
 }
 
 @media screen and (min-width: 480px) {
@@ -78,7 +78,7 @@
 
   cursor: pointer;
 
-  background-color: white;
+  background-color: rgb(128, 184, 199);
 
   border: 2px solid black;
 
@@ -87,8 +87,8 @@
 
 .phonebook__link:hover,
 .phonebook__link:focus {
-  color: #1976d2;
-  border: 2px solid #1976d2;
+  color: #ffc84f;
+  border: 2px solid #ffc84f;
 }
 
 .phonebook__text {

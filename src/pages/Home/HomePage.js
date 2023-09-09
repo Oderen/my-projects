@@ -18,10 +18,179 @@ const Home = () => {
         <Outlet />
       </Suspense>
 
+      {/* <div
+        style={{
+          width: '100%',
+          height: 200,
+          backgroundColor: 'tomato',
+        }}
+      ></div>
+      <div
+        style={{
+          width: '100%',
+          minHeight: '100vh',
+          borderColor: 'red',
+          borderWidth: 2,
+          borderStyle: 'solid',
+        }}
+      >
+        <h2>List of projects</h2>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ul
+            style={{
+              display: 'flex',
+              gap: 30,
+              padding: 0,
+              listStyle: 'none',
+            }}
+          >
+            <li>
+              <div className={css.v2_div1}>
+                <img
+                  src={require('../../images/gt.png')}
+                  alt="a"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 8,
+                  }}
+                />
+                <div className={css.overlay}></div>
+              </div>
+              <div className={css.a}>
+                <h3
+                  style={{
+                    color: 'white',
+                    margin: 0,
+                    fontFamily: 'Roboto',
+                    fontSize: 24,
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    letterSpacing: 1.08,
+                  }}
+                >
+                  Goose Track
+                </h3>
+                <p
+                  style={{
+                    color: 'black',
+                    fontFamily: 'Roboto',
+                    fontSize: 18,
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    letterSpacing: 1.08,
+                  }}
+                >
+                  Web application for managing tasks
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className={css.v2_div1}>
+                <img
+                  src={require('../../images/filmoteka.png')}
+                  alt="a"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 8,
+                  }}
+                />
+                <div className={css.overlay}></div>
+              </div>
+              <div className={css.a}>
+                <h3
+                  style={{
+                    color: 'white',
+                    margin: 0,
+                    fontFamily: 'Roboto',
+                    fontSize: 24,
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    letterSpacing: 1.08,
+                  }}
+                >
+                  Filmoteka
+                </h3>
+                <p
+                  style={{
+                    color: 'black',
+                    fontFamily: 'Roboto',
+                    fontSize: 18,
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    letterSpacing: 1.08,
+                  }}
+                >
+                  Web application for chosing a movie
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className={css.v2_div1}>
+                <img
+                  src={require('../../images/iceCream.png')}
+                  alt="a"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 8,
+                  }}
+                />
+                <div className={css.overlay}></div>
+              </div>
+              <div className={css.a}>
+                <h3
+                  style={{
+                    color: 'white',
+                    margin: 0,
+                    fontFamily: 'Roboto',
+                    fontSize: 24,
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    letterSpacing: 1.08,
+                  }}
+                >
+                  Ice Cream
+                </h3>
+                <p
+                  style={{
+                    color: 'black',
+                    fontFamily: 'Roboto',
+                    fontSize: 16,
+                    fontStyle: 'normal',
+                    fontWeight: 700,
+                    letterSpacing: 1.08,
+                  }}
+                >
+                  Web application for choosing an ice cream
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div> */}
+
       <div className={css.mainContent}>
         <div className={css.projectInfo}>
           <div className={css.projectInfo__innerContainer}>
             <h2 className={css.projectInfo__title}>Projects</h2>
+
             <ul className={css.projectInfo__list}>
               <li className={css.projectInfo__item}>
                 <NavLink
